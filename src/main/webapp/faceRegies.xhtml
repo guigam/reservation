@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich">
+
+ 
+
+        <ui:composition template="/template_Client.xhtml">
+            <ui:define name="style">
+                <style>
+                    .alli{
+                        position: fixed;
+                       right: 40px;
+                       
+                    }
+                </style>
+            </ui:define>
+
+
+
+            <ui:define name="body">
+                <h:form>
+              <rich:panel style="width:100%;" >
+              
+                         <h:outputText value="Liste des face de: "  styleClass="title1"/>
+                         <h:outputText value="#{gestRegie.maregie.nom}"  styleClass="title1"/>
+                         <rich:spacer width="500"/>
+                         <h:outputText value="Nombre de faces #{gestRegie.nbface}" styleClass="title2" style="color:#EF8325" />
+                     
+                        <rich:separator width="100%" height="5" />
+                    <rich:spacer height="10px"/>
+
+                    <rich:dataTable value="#{gestRegie.lesface}"  id="tt" rows="12" var="ff" binding="#{gestRegie.dataTable2}" width="100%">
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Id face"/>
+
+                            </f:facet>
+                                 <h:outputText value="#{ff.idFace}"/>
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Format"/>
+                            </f:facet>
+                                <h:outputText value="#{ff.format}"/>
+                        </rich:column>
+                    <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="type Face"/>
+                            </f:facet>
+                                 <h:outputText value="#{ff.type}"/>
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Note Qualitative"/>
+                            </f:facet>
+                                <h:outputText value="#{ff.noteQualitative}"/>
+                        </rich:column>
+                         <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="GRP"/>
+                            </f:facet>
+                                <h:outputText value="#{ff.grp}"/>
+                        </rich:column>
+                      <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Audience"/>
+                            </f:facet>
+                                <h:outputText value="#{ff.audience}"/>
+                        </rich:column>
+
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Adresse"/>
+                            </f:facet>
+                                 <h:outputText value="#{ff.adresse}"/>
+                        </rich:column>
+                        
+                      <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Prix Public"/>
+                            </f:facet>
+                                <h:outputText value="#{ff.prixPublic}"/>
+                         </rich:column>
+
+                <center> <rich:column>
+                        <rich:toolTip for="Voir sur Carte" value="Voir Sur Carte" />
+                        <h:commandButton image="/images/icons/map.png" action="#{gestRegie.ShowfaceCarte}"  />
+                           <rich:toolTip followMouse="true" direction="top-right" showDelay="500" styleClass="tooltip">
+                            <span  style="white-space:nowrap">
+                                Voir cette face sur la carte
+                            </span>
+                        </rich:toolTip>
+
+
+                        </rich:column></center>
+                    <f:facet  name="footer">
+                        <rich:datascroller for="tt" maxPages="20"></rich:datascroller>
+                    </f:facet>
+             
+            </rich:dataTable>
+          
+              </rich:panel>
+                </h:form>
+                 
+            </ui:define>
+            
+              
+        </ui:composition>
+        
+  
+</html>

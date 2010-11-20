@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+        xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <body>
+
+        <ui:composition template="template_Client.xhtml">
+
+            <ui:define name="body">
+              
+                <rich:panel style="width:100%;" >
+                    <h:outputText value="Pige et Monitoring "  styleClass="title1" />
+                         <rich:separator width="100%" height="5" /><rich:spacer height="15px"/>
+                         <h:panelGrid columns="3">
+                             <rich:comboBox >
+                                 
+                             </rich:comboBox>
+                                    <rich:spacer width="20px"/>
+                               
+                         <p:lightBox>
+                             <h:graphicImage url="/images/icons/camera.png"/>
+                             <rich:spacer width="7px"/>
+                             <h:outputLink value="Image/1.jpg" title=" 1">Voir photo campagne</h:outputLink>
+                             <h:outputLink value="Image/1.jpg" title=" 1">
+
+                             </h:outputLink>
+
+                             <h:outputLink value="Image/2.jpg" title=" 2">
+
+                             </h:outputLink>
+
+                             <h:outputLink value="Image/3.jpg" title=" 3">
+
+                            </h:outputLink>
+
+                             <h:outputLink value="Image/4.jpg" title=" 4">
+
+                             </h:outputLink>
+                              <h:outputLink value="Image/5.jpg" title=" 5">
+
+                             </h:outputLink>
+                         </p:lightBox>
+     </h:panelGrid>
+
+     <rich:spacer height="20px"/>
+      <h:outputText value="Etude "  styleClass="title2" />
+                         <rich:separator width="100%" height="5" /><rich:spacer height="15px"/>
+
+
+
+
+                         <h:form id="form">
+
+	<h:panelGrid columns="4">
+		<h:outputLabel for="name" value="Name: *" />
+		<h:inputText id="name" value="" label="name" required="true" requiredMessage="You must type something!"/>
+		<p:commandButton value="Submit" update="bottomPanel" oncomplete="bottomBar.show();"/>
+		<p:ajaxStatus style="height:24px;display:block;">
+			<f:facet name="start">
+				<h:graphicImage value="../design/ajaxloading.gif" />
+			</f:facet>
+
+			<f:facet name="complete">
+				<h:outputText value="" />
+			</f:facet>
+		</p:ajaxStatus>
+	</h:panelGrid>
+
+	<p:notificationBar position="top" effect="slide" widgetVar="topBar" styleClass="top">
+		<h:outputText value="What PrimeFaces has so far is just the beginning!" style="color:#FFCC00;font-size:36px;" />
+	</p:notificationBar>
+
+	<p:notificationBar position="bottom" effect="fade" widgetVar="bottomBar" styleClass="bottom">
+		<f:facet name="close">
+			<p:graphicImage value="/images/closebar.png" />
+		</f:facet>
+
+		<h:panelGroup id="bottomPanel" style="margin-right:200px;">
+			<p:messages />
+			
+		</h:panelGroup>
+	</p:notificationBar>
+</h:form>
+
+<h3>Displaying Any Content</h3>
+
+<a href="#" onclick="topBar.show()">Show Top Bar</a>
+<a href="#" onclick="topBar.hide()">Hide Top Bar</a>
+
+
+     </rich:panel>
+
+
+<rich:spacer height="30"/>
+
+<p:tabSlider>
+    <p:tab title="Lionel Messi" >
+        <h:panelGrid columns="2" style="padding:10px;">
+            <h:graphicImage value="Image/1.jpg" width="200" height="100"></h:graphicImage>
+           <h:outputText value="Messi is an unusual player...."></h:outputText>
+       </h:panelGrid>
+   </p:tab>
+
+    <p:tab title="Zlatan Ibrahimovic">
+         <h:panelGrid columns="2" style="padding:10px;">
+             <h:graphicImage value="Image/2.jpg" width="200" height="100"></h:graphicImage>
+             <h:outputText value="brahimovic has always stood out as a skilful player...  "></h:outputText>
+         </h:panelGrid>
+     </p:tab>
+
+     <p:tab title="Thierry Henry">
+         <h:panelGrid columns="2" style="padding:10px;">
+             <h:graphicImage value="Image/3.jpg" width="200" height="100"></h:graphicImage>
+             <h:outputText
+                 value="Speed and technique are two of Henry's main characteristics... "></h:outputText>
+         </h:panelGrid>
+     </p:tab>
+  </p:tabSlider>
+     
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+
+
+  

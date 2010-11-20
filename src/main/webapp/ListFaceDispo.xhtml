@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ajax="https://ajax4jsf.dev.java.net/ajax"
+      xmlns:richfaces="http://richfaces.ajax4jsf.org/rich">
+
+  
+
+        <ui:composition template="/template_Client.xhtml">
+
+
+
+            <ui:define name="body">
+                
+              <rich:panel style="width:100%;" >
+              <h:form>
+                     <h:outputText value="Liste des faces disponibles"  styleClass="title1"/>
+
+                        <rich:separator width="100%" height="5" />
+                    <rich:spacer height="10px"/>
+                  
+        <h:panelGrid columns="6">
+            <h:outputText value="Date debut" />
+            <rich:calendar value="#{faceman.d1}" id="d1" datePattern="dd/MM/yyyy" enableManualInput="true">
+                
+             </rich:calendar>
+              <h:outputText value="Date Fin" />
+             <rich:calendar value="#{faceman.d2}" id="d2" datePattern="dd/MM/yyyy">
+                     
+             </rich:calendar>
+
+                             <rich:spacer width="20px"/>
+                             <a4j:commandButton value="Lancer"  action="#{faceman.lesdispo}" reRender="gen"/>
+                             </h:panelGrid>
+                </h:form>
+
+                         <rich:spacer height="40px"/>
+                         <h:outputText value="Resultat" styleClass="title3"/>
+                         
+
+                    <rich:separator width="100%" height="5" />
+
+                    <rich:spacer height="5"/>
+                         <h:form>
+                             <a4j:outputPanel id="gen">
+                             
+                                       <center><h:outputText value=" Nombre de faces : #{faceman.nbrface}" styleClass="title2" rendered="${not empty faceman.nbrface}" style="color:#EF8325"/></center>
+                                
+                                 <rich:spacer height="10"/>
+                            <a4j:outputPanel id="mess" rendered="${empty faceman.faces}" >
+                                 <h:outputText value="Aucun Resultat" style="font-size:14;font-weight:bold;" />
+                            </a4j:outputPanel>
+
+
+                     
+                             <rich:dataTable  style="width:100%;" rowKeyVar="row" row="12" var="face"  value="#{faceman.faces}" id="tab" rendered="${not empty faceman.faces}"   >
+                                 <f:facet name="header">
+                                 <richfaces:columnGroup>
+                                     <rich:column>
+                                             <h:outputText value="Id face"/>
+                                     </rich:column>
+                              
+                                     <rich:column>
+                                             <h:outputText value="Regie"/>
+                                 </rich:column>
+                                      <rich:column>
+                                              <h:outputText value="Format"/>
+                                     </rich:column>
+                                      <rich:column>
+                                              <h:outputText value="type Face"/>
+                                     </rich:column>
+                                     <rich:column>
+                                               <h:outputText value="Note Qualitative"/>
+                                     </rich:column>
+                                      <rich:column>
+                                              <h:outputText value="GRP"/>
+                                     </rich:column>
+                                      <rich:column>
+                                           <h:outputText value="Audience"/>
+                                     </rich:column>
+                                      <rich:column>
+                                           <h:outputText value="Adresse"/>
+                                     </rich:column>
+                                      <rich:column>
+                                          <h:outputText value="Prix Public"/>
+                                     </rich:column>
+                                      <rich:column>
+
+                                     </rich:column>
+
+                                 </richfaces:columnGroup>
+                                 </f:facet>
+                        <rich:column >
+                                                       
+                                 <h:outputText value="#{face.idFace}"/>
+                        </rich:column>
+                         <rich:column filterBy="#{face.maregie.nom}" sortOrder="ASCENDING" filterEvent="onkeyup" filterValue="#{face.currentStateFilterValue}">
+
+                                <h:outputText value="#{face.maregie.nom}"/>
+                        </rich:column>
+
+   
+
+
+
+                        <rich:column id="format" sortExpression="#{face.format}"   filterBy="#{face.format}" filterEvent="onkeyup" >
+                          
+                                <h:outputText value="#{face.format}"/>
+                        </rich:column>
+                    <rich:column>
+                       
+                                 <h:outputText value="#{face.type}"/>
+                        </rich:column>
+                        <rich:column>
+                           
+                                <h:outputText value="#{face.noteQualitative}"/>
+                        </rich:column>
+                         <rich:column>
+                              <h:outputText value="#{face.grp}"/>
+                        </rich:column>
+                      <rich:column>
+                         
+                                <h:outputText value="#{face.audience}"/>
+                        </rich:column>
+                      
+                          <rich:column>
+                            
+                                <h:outputText value="#{face.adresse}"/>
+                        </rich:column>
+                        
+                      <rich:column>
+                           
+                                <h:outputText value="#{face.prixPublic}"/>
+                         </rich:column>
+                         
+                <center> <rich:column>
+                            <h:commandButton image="/images/icons/eye.png"   />
+                                   <rich:toolTip for="Voir sur Carte" value="Voir Sur Carte" />
+                                   
+
+                        </rich:column></center>
+                    <f:facet name="footer">
+                            <rich:datascroller for="tab" maxPages="20" ></rich:datascroller>
+                    </f:facet>
+
+            </rich:dataTable>
+           </a4j:outputPanel>
+            
+          
+
+             </h:form>
+
+              </rich:panel>
+               
+            </ui:define>
+
+        </ui:composition>
+        
+   
+</html>

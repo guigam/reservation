@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:m="http://code.google.com/p/gmaps4jsf/"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+       xmlns:p="http://primefaces.prime.com.tr/ui">
+    
+  
+        
+        <ui:composition template="./template_Client.xhtml">
+            
+            <ui:define name="style">
+                <style>
+                      .pbody{
+                        padding:0px;
+                        height:120px;
+                        width:150px;
+                        overflow:auto;
+                        }
+
+                        .top {
+                            vertical-align: top;
+
+                        }
+                        .info {
+                            height: 202px;
+                            overflow: auto;
+                        }
+
+                </style>
+                 
+            </ui:define>
+            <ui:define name="body">
+  <h:form>
+ <rich:panel style="width:100%;" >
+              <h:outputText value="Nouvelle commande "  styleClass="title1" />
+              <rich:separator width="100%" height="5" />
+              <rich:spacer height="10px"/>
+
+
+
+
+              <rich:panel>
+                   
+                        
+                           
+                                   <h:outputText value="Nom campagne"/>
+                                   <h:inputText value="#{mancamp.macamp.nomCampagne}" />
+                                   
+                                   <h:panelGrid columns="2">
+                                   <rich:panel>
+                                   <h:outputText value="date début"  />
+                                   <rich:calendar />
+                                   <h:outputText value="date fin" />
+                                   <rich:calendar />
+                                   <rich:spacer width="20"/> 
+                                   <a4j:commandButton image="/images/icons/magnifier.png" action="#{faceman.faceClientDispo}" reRender="gen"/>
+                                   </rich:panel>
+                                   </h:panelGrid>
+                        <rich:spacer width="800px" />
+                        <h:commandButton value="valider la commande" action="#{mancamp.savelaCampagne}"/>
+                       
+                     
+                  
+                
+
+             </rich:panel>
+
+
+
+
+              <rich:spacer height="30px" />
+              <h:outputText value="Liste des faces " styleClass="title3"  />
+           
+              <rich:separator width="100%" height="2" />
+              <rich:spacer height="10px" />
+
+
+               <a4j:outputPanel id="gen">
+
+                            <a4j:outputPanel id="mess" rendered="${empty faceman.lesfaces}" >
+                                <rich:panel style="background-color:#EAF0F8">
+                                 <center><h:outputText value="Choisissez la période et cliquez sur la loupe" style="font-size:14;font-weight:bold;" /></center>
+                                 </rich:panel>
+                            </a4j:outputPanel>
+              <h:panelGrid columns="1" columnClasses="top,top" >
+                  <rich:pickList converter="face"
+                                 id="tab"
+                                 rendered="${not empty faceman.lesfaces}"
+                                 value="#{mancamp.faceCampagne}"
+                                 listsHeight="150"
+                                 sourceListWidth="250"
+                                 targetListWidth="250"
+                                 sourceCaptionLabel="Available Items"
+                                 targetCaptionLabel="Currently Active Items">
+                      
+                     
+                        <f:selectItems value="#{faceman.lesfaces}" />
+
+                  </rich:pickList >
+                  <rich:panel  id="pann"  rendered="${not empty faceman.lesfaces}">
+                      <f:facet name="header">
+                          <h:outputText value="Resultat de la selection"/>
+                      </f:facet>
+                  </rich:panel>
+
+             </h:panelGrid>
+
+            </a4j:outputPanel>
+
+
+              
+
+                   <rich:spacer height="30px" />
+                   <h:outputText value="Rattacher le visuel" styleClass="title3"/>
+                   <rich:separator width="100%" height="2" />
+                   <rich:spacer height="10px" />
+
+        <h:panelGrid columns="2" columnClasses="top,top">
+            <rich:fileUpload fileUploadListener="#{fileUploadBean.listener}"
+                maxFilesQuantity="#{fileUploadBean.uploadsAvailable}"
+                id="upload"
+                immediateUpload="#{fileUploadBean.autoUpload}"
+                acceptedTypes="jpg, gif, png, bmp" allowFlash="#{fileUploadBean.useFlash}">
+                <a4j:support event="onuploadcomplete" reRender="info" />
+            </rich:fileUpload>
+            <h:panelGroup id="info">
+                <rich:panel bodyClass="info">
+                    <f:facet name="header">
+                        <h:outputText value="Uploaded Files Info" />
+                    </f:facet>
+                    <h:outputText value="No files currently uploaded"
+                        rendered="#{fileUploadBean.size==0}" />
+                    <rich:dataGrid columns="1" value="#{fileUploadBean.files}"
+                        var="file" rowKeyVar="row">
+                        <rich:panel bodyClass="rich-laguna-panel-no-header">
+                            <h:panelGrid columns="2">
+                                <a4j:mediaOutput element="img" mimeType="#{file.mime}"
+                                    createContent="#{fileUploadBean.paint}" value="#{row}"
+                                    style="width:100px; height:100px;" cacheable="false">
+                                    <f:param value="#{fileUploadBean.timeStamp}" name="time"/>
+                                </a4j:mediaOutput>
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="File Name:" />
+                                    <h:outputText value="#{file.name}" />
+                                    <h:outputText value="File Length(bytes):" />
+                                    <h:outputText value="#{file.length}" />
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </rich:panel>
+                    </rich:dataGrid>
+                </rich:panel>
+                <rich:spacer height="3"/>
+                <br />
+                <a4j:commandButton action="#{fileUploadBean.clearUploadData}"
+                    reRender="info, upload" value="Clear Uploaded Data"
+                    rendered="#{fileUploadBean.size>0}" />
+            </h:panelGroup>
+        </h:panelGrid>
+
+ </rich:panel>
+ </h:form>
+               
+            </ui:define>
+
+        </ui:composition>
+        
+ 
+</html>

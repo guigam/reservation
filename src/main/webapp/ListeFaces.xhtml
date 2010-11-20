@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich">
+
+        <ui:composition template="template_regie.xhtml" >
+            
+            <ui:define name="body" >
+                <rich:panel style="width:100%">
+                    <h:outputText value="Liste des faces" styleClass="title1" />
+                    
+                    <rich:separator width="100%" height="5" />
+                     <h:form>
+                         <rich:spacer height="20px"/>
+
+
+
+                         <h:panelGrid columns="2">
+                             <h:outputText value="ID Face" styleClass="title3"/>
+                             <h:inputText value="#{faceman.idface}"  />
+
+                               <h:outputText value="Type" styleClass="title3"/>
+                               <rich:comboBox value="#{faceman.type}">
+                                   <f:selectItems value="#{faceman.listTypes}"/>
+                                </rich:comboBox>
+
+                             <h:outputText value="Format" styleClass="title3" />
+                                <rich:comboBox value="#{faceman.format}">
+                                 <f:selectItems value="#{faceman.listFormat}"/>
+                                </rich:comboBox>
+                             <rich:spacer width="20px"/>
+                             <h:commandButton value="Lancer" action="#{faceman.marecherche}" reRender="gen"/>
+
+                         </h:panelGrid>
+                         <rich:spacer height="40px"/>
+                         <h:outputText value="Resultat" styleClass="title1"/>
+
+                    <rich:separator width="100%" height="5" />
+
+                         <rich:spacer height="20px"/>
+                        
+                       <rich:dataTable rows="12" binding="#{faceman.dataTable}" id="fa" style="width:100%;" rowKeyVar="row" var="face" value="#{faceman.mesfaces}"  >
+
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Id face"/>
+                                
+                            </f:facet>
+                            <h:outputText value="#{face.idFace}"/>
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Format"/>
+                            </f:facet>
+                                <h:outputText value="#{face.format}"/>
+                        </rich:column>
+                    <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="type Face"/>
+                            </f:facet>
+                                 <h:outputText value="#{face.type}"/>
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Note Qualitative"/>
+                            </f:facet>
+                                <h:outputText value="#{face.noteQualitative}"/>
+                        </rich:column>
+                         <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="GRP"/>
+                            </f:facet>
+                                <h:outputText value="#{face.grp}"/>
+                        </rich:column>
+                      <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Audience"/>
+                            </f:facet>
+                                <h:outputText value="#{face.audience}"/>
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Latitude"/>
+                            </f:facet>
+                                 <h:outputText value="#{face.coordonneX}"/>
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Longitude"/>
+                            </f:facet>
+                                <h:outputText value="#{face.coordonneY}"/>
+                         </rich:column>
+                          <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Adresse"/>
+                            </f:facet>
+                                <h:outputText value="#{face.adresse}"/>
+                        </rich:column>
+                        
+                      <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Prix Public"/>
+                            </f:facet>
+                                <h:outputText value="#{face.prixPublic}"/>
+                         </rich:column>
+                         <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Disponible"/>
+                            </f:facet>
+
+                                <center><h:selectBooleanCheckbox
+                                    value="#{face.dispo}" >
+                                </h:selectBooleanCheckbox></center>
+                        </rich:column>
+                        <rich:column  >
+                            <h:commandButton image="/images/icons/page_edit.png" action="#{faceman.goEditface}"  />
+                    
+                                   <h:commandButton action="#{faceman.delete}"  image="/images/icons/bin_closed.png"/>
+                   
+                                    <h:commandButton image="/images/icons/user.png"  onclick="Richfaces.showModalPanel('uploadPanel');return false;" href="javascript:void"/>
+                                
+                        </rich:column>
+                    
+<f:facet name="footer">
+
+<rich:datascroller for="fa" maxPages="5"></rich:datascroller>
+                    
+</f:facet>
+</rich:dataTable>
+
+             </h:form>
+
+
+
+                    
+</rich:panel>
+
+
+                <rich:modalPanel id="uploadPanel" autosized="true" zindex="2000">
+                  <f:facet name="header">
+                    <h:outputText value="Clients autorisé" />
+                  </f:facet>
+
+                  <h:form id="permission" >
+                      <h:panelGrid columns="3">
+                          <rich:pickList value="#{faceman.clientPermission}" converter="client">
+                                <f:selectItems value="#{manClient.listClientItem}"/>
+                            </rich:pickList>
+                          <h:commandButton value="Valider" action="#{faceman.clientPermission}" style="margin-right:20px;"/>
+                  </h:panelGrid>
+
+                  </h:form>
+
+                  <a onclick="Richfaces.hideModalPanel('uploadPanel');return false;"  href="javascript:void" >Ferme</a>
+                  </rich:modalPanel>
+
+
+            </ui:define>
+
+        </ui:composition>
+        
+  
+</html>

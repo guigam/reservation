@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich">
+    
+    <body>
+        
+        <ui:composition template="./template_regie.xhtml" >
+            
+            <ui:define name="body" >
+               <rich:panel style="width:100%" >
+                    <h:outputText value="Liste des Clients" styleClass="title1"/>
+                       <rich:separator width="100%" height="5" />
+                    <rich:spacer height="20px"/>
+                    <h:form>
+
+                        <rich:dataTable binding="#{manClient.datatable}"  style="width:100%;" rowKeyVar="row" var="cli" value="#{manClient.listClients}" >
+
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nom Client"/>
+                            </f:facet>
+                                 <h:outputText value="#{cli.nomClient}"/>
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Adresse"/>
+                            </f:facet>
+                                <h:outputText value="#{cli.adresse}"/>
+                        </rich:column>
+                    <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Telephone"/>
+                            </f:facet>
+                                 <h:outputText value="#{cli.phone}"/>
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fax"/>
+                            </f:facet>
+                                <h:outputText value="#{cli.fax}"/>
+                        </rich:column>
+                         <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="E-mail"/>
+                            </f:facet>
+                                <h:outputText value="#{cli.email}"/>
+                        </rich:column>
+                            <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="E-mail"/>
+                            </f:facet>
+                                <h:outputText value="#{cli.information}"/>
+                        </rich:column>
+                        <rich:column>
+                            <h:commandButton image="/images/icons/eye.png" onclick="Richfaces.showModalPanel('camp');return false;" href="javascript:void"/>
+                        </rich:column>
+
+
+                    <f:facet name="footer">
+                            <rich:datascroller></rich:datascroller>
+                    </f:facet>
+
+            </rich:dataTable>
+
+            </h:form>
+               </rich:panel>
+
+
+
+                <rich:modalPanel id="camp" width="800" height="300">
+                    <h:form>
+                        <rich:dataTable value="#{manClient.campagnecli}" var="cp" width="100%">
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Campagne"/>
+                                </f:facet>
+                                <h:outputText value="#{cp.nomCampagne}" style="font-size:10pt; font-weight:bold; color:#305483"/>
+                             </rich:column>
+                              <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Details"/>
+                                </f:facet>
+                                  <h:panelGrid columns="2">
+                                      <h:outputText value="Date Debut" styleClass="title2"/>
+                                      <h:outputText value="#{cp.dateDebut}" />
+                                       <h:outputText value="Date Fin"  styleClass="title2"/>
+                                        <h:outputText value="#{cp.dateFin}"/>
+                                        <h:outputText value="Etat" styleClass="title2"/>
+                                        <h:outputText value="#{cp.etat}" />
+                                  </h:panelGrid>
+                             </rich:column>
+                        </rich:dataTable>
+                    </h:form>
+                     <a onclick="Richfaces.hideModalPanel('camp');return false;"  href="javascript:void">Ferme</a>
+                </rich:modalPanel>
+
+
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+         xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:rich="http://richfaces.org/rich">
+
+    <body>
+
+       <h:graphicImage url="/images/logo.gif" height="80"/>
+
+            <h:panelGrid columns="2" headerClass="rich-toolbar" width="100%">
+
+		<f:facet name="header">
+			<rich:toolBar>
+                           
+                            <h:outputText style="color:white;font-size:8pt" value="Site de réservation des Regies " />
+       
+			</rich:toolBar>
+		</f:facet>
+              </h:panelGrid>
+                        <rich:spacer height="30"/>
+       <center><rich:panel header="Créer un compte " style="width:400px; height:400px" >
+           <h:form>
+               <h:panelGrid columns="2" cellspacing="15">
+                   <h:outputText value="Nom"/>
+                   <h:inputText value="#{log.mareg.nom}"/>
+                   <h:outputText value="Tel"/>
+                   <h:inputText value="#{log.mareg.phone}"/>
+                   <h:outputText value="Fax"/>
+                   <h:inputText value="#{log.mareg.fax}"/>
+                   <h:outputText value="E-mail"/>
+                   <h:inputText value="#{log.mareg.email}"/>
+                   <h:outputText value="Adresse"/>
+                   <h:inputTextarea value="#{log.mareg.adresse}"/>
+                   <h:outputText value="Nom Utilisateur"/>
+                   <h:inputText value="#{log.monuser.username}"/>
+                   <h:outputText value="Mot de passe"/>
+                   <h:inputText value="#{log.monuser.mdp}"/>
+                   </h:panelGrid>
+               <rich:spacer height="30" width="180"/>
+               <h:commandButton value="Valider" style="width:100px" action="#{log.nvUtil}"/>
+           </h:form>
+       </rich:panel></center>
+
+
+        </body>
+</html>

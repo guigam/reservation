@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:m="http://code.google.com/p/gmaps4jsf/"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich">
+
+    <body>
+
+        <ui:composition template="./template_Client.xhtml">
+
+            <ui:define name="style">
+
+
+            </ui:define>
+
+            <ui:define name="body">
+
+                <rich:panel style="width:100%;" >
+                    <h:outputText value="Enregistrer les images"  style="font-size:17pt;  font-weight:bold;" />
+                    <h:outputText   styleClass="title1" />
+                       <rich:separator width="100%" height="5" />
+                       <h:selectManyListbox value="#{mancamp.campagneEnCourRegie}">
+                           <f:selectItems value="#{mancamp.mescamps}"/>
+                       </h:selectManyListbox>
+
+               </rich:panel>
+             
+            </ui:define>
+                  
+        </ui:composition>
+        
+    </body>
+</html>

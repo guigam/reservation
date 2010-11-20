@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <style>
+                .top {
+                    vertical-align:top;
+                }
+            </style>
+        </head>
+
+   <body>
+        <img src="images/logo.gif"/>
+
+            <h:panelGrid columns="2" headerClass="rich-toolbar" width="100%">
+		<f:facet name="header">
+			<rich:toolBar>
+                        	<rich:toolBarGroup>
+					<h:outputText style="color:white;font-size:8pt" value="Site de résérvation des Regies " />
+				</rich:toolBarGroup>
+			</rich:toolBar>
+		</f:facet>
+              </h:panelGrid>
+
+        <h:panelGrid columns="2" columnClasses="top,top">
+
+<h:panelGrid columns="3" columnClasses="cell_menu,,cell_content">
+		<rich:panelMenu style="width:220px;" >
+                    <rich:panelMenuGroup label="Menu" expanded="true" >
+
+			<rich:panelMenuGroup label="Gestion des faces" >
+                            <rich:panelMenuItem label="liste des faces" action="#{faceman.listeface}"  />
+                            <rich:panelMenuItem label="Ajouter une face"  action="#{faceman.goForm}"/>
+
+                        </rich:panelMenuGroup>
+                        <rich:panelMenuItem label="Liste des clients"  action="#{climanager.dir}"/>
+                        <rich:panelMenuItem label="Nouvelle campagne"  action="#{campManag.goform}"/>
+                        <rich:panelMenuItem label="liste de campagne Client"  action="#{regmanager.listcampCli}"/>
+
+                        <rich:panelMenuItem  label="Gestion des commandes" />
+
+
+
+                        <rich:panelMenuGroup label="Camapagnes" >
+                        <rich:panelMenuItem label="liste des Campagne" action="#{campManag.maliste}"  />
+                           </rich:panelMenuGroup>
+
+                                 </rich:panelMenuGroup>
+                </rich:panelMenu>
+                </h:panelGrid>
+
+            <h:panelGroup>
+        <ui:insert name="body">body</ui:insert>
+</h:panelGroup>
+        </h:panelGrid>
+        </body>
+
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+         xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:rich="http://richfaces.org/rich">
+
+    <body>
+       
+        <center> <h:panelGrid columns="3">
+       
+                <h:graphicImage id="logo" value="images/pann2.jpg" width="300px" height="500px"/>
+               
+        <rich:spacer width="35px" />
+	
+
+
+   
+        <h:form id="myform" >
+            <rich:panel >
+                 <h:panelGrid  columns="2"  >
+                            
+                     <h:outputText value="Utilisateur" style="font-weight:bold;font-size:9pt; color:#396389"/>
+                            
+                            <h:inputText  value="#{log.monuser.username}"  required="true" requiredMessage="Le champs 'username' est obligatoire"/>
+                            <h:outputText value="Mot de passe" style="font-weight:bold;font-size:9pt; color:#396389"/>
+                            <h:inputText value="#{log.monuser.mdp}" required="true" id="mdp"  requiredMessage="il faut minimum 2 caracteres">
+                                 <f:validateLength minimum="2" maximum="12"/>
+                             </h:inputText>
+                            <rich:spacer height="10"/>
+
+                            
+                             
+                            
+                </h:panelGrid>
+                <rich:spacer width="49"/>
+                <a href="#{redirect.profil}" >Ovrir un compte</a>
+                 <rich:spacer width="22"/>
+                <h:commandButton value="valider"   action="#{log.login}"  style="width:70px" />
+                
+           </rich:panel>
+            </h:form>
+          </h:panelGrid></center>
+        <center><h:panelGrid columns="1">
+                    <h:outputText value="Cette application a été développée par  GFplus" style="font-size:7pt;"/>
+                    <h:outputText value="Tél: +1 418-265-0140 É-mail: info@GFplus.ca" style="font-size:7pt;"/>
+                    <h:outputText value="Pour nous contacter vous pouvez cliquer" style="font-size:7pt;"/>
+                    <h:graphicImage value="/images/moi.gif" width="80pt" height="20pt"/>
+                    <rich:spacer height="5px"/>
+                    <h:outputText value="Copyright © 2010 GFplus. Tous droits réservés." style="  font-size:7pt;font-weight:bold; color:#396389;"/>
+                    
+                </h:panelGrid></center>
+
+        
+
+
+
+
+          
+    </body>
+</html>

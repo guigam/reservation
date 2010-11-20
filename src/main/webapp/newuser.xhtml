@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich">
+    
+    <body>
+        
+        <ui:composition template="template_regie.xhtml">
+            
+            <ui:define name="body">
+                 <rich:panel style="width:950px;" >
+                    <h:outputText value="Nouvel Utilisateur" styleClass="title1"/>
+                       <rich:separator width="100%" height="5" />
+                    <h:form>
+                        <h:panelGrid columns="6">
+                        <h:panelGrid columns="2">
+                        <h:outputText value="Nom"/>
+                        <h:inputText value="#{user.leuser.nom}"/>
+                         <h:outputText value="telephone"/>
+                        <h:inputText value="#{user.leuser.phone}"/>
+                         <h:outputText value="Fax"/>
+                        <h:inputText value="#{user.leuser.fax}"/>
+                         <h:outputText value="E-mail"/>
+                        <h:inputText value="#{user.leuser.email}"/>
+                         <h:outputText value="Adresse"/>
+                        <h:inputText value="#{user.leuser.adresse}"/>
+                      
+                         <h:outputText value="Username"/>
+                        <h:inputText value="#{user.leuser.username}"/>
+                         <h:outputText value="Mot de passe"/>
+                        <h:inputText value="#{user.leuser.mdp}"/>
+                        <rich:spacer/>
+                        
+
+                        </h:panelGrid>
+                       
+                            <h:panelGrid columns="2">
+                                <rich:pickList  converter="role">
+                                    <f:selectItems value="#{role.roles}"/>
+                                </rich:pickList>
+                                <rich:spacer/>
+                                <rich:spacer/>
+                                <h:commandButton value="Valider" action="#{user.NewUser}" style="width:100px; " />
+                        </h:panelGrid>
+
+                            <h:panelGrid columns="2">
+                                <rich:spacer width="200px"/>
+                             
+                         
+                         </h:panelGrid>
+                        </h:panelGrid>
+                    </h:form>
+
+
+                
+
+
+
+                </rich:panel>
+
+                 
+
+               
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

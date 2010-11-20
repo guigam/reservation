@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich">
+  
+    
+    <body>
+        
+        <ui:composition template="./template_regie.xhtml">
+        
+      
+            <ui:define name="body">
+                 <rich:panel style="width:100%;" >
+                 
+                     <h:outputText value="Detail Campagne"  styleClass="title1"/>
+                       
+                        <rich:separator width="100%" height="5" />
+                    <rich:spacer height="10px"/>
+
+                    <h:form>
+
+
+                   
+            
+                        <h:panelGrid columns="2"  columnClasses="top1,top1">
+                            <h:panelGrid columns="2"  width="250px" >
+                                <h:outputText value="Nom Campagne" styleClass="title2"/>
+                                <h:outputText value="#{mancamp.macamp.nomCampagne}"/>
+                                <h:outputText value="Date Début" styleClass="title2"/>
+                                <h:outputText value="#{mancamp.macamp.dateDebut}"/>
+                            <h:outputText value="Date Fin" style="font-size:9pt;font-weight:bold;"/>
+                            <h:outputText value="#{mancamp.macamp.dateFin}"/>
+                               <h:outputText value="Audience" style="font-size:9pt;font-weight:bold;"/>
+                               <h:outputText value="#{mancamp.sommeAudience}"/>
+                            <h:outputText value="Nombre de face" style="font-size:9pt;font-weight:bold;"/>
+                            <h:outputText value="#{mancamp.nbrface}"/>
+                            <h:outputText value="GRP" style="font-size:9pt;font-weight:bold;"/>
+                            <h:outputText value="#{mancamp.sommeGRP}"/>
+                            <h:outputText value="Budget" style="font-size:9pt;font-weight:bold;"/>
+                            <h:outputText value="#{mancamp.sommeBudget}"/>
+                           
+                            </h:panelGrid >
+                            <h:panelGrid>
+
+                                <h:commandLink value="Visuel" id="vis" onclick="Richfaces.showModalPanel('photo');return false;" href="javascript:void"/>
+                            <h:commandLink value="Cartographie" action="#{redirect.carteregie}"/>
+                             </h:panelGrid>
+                            </h:panelGrid>
+                            
+                                           
+                    
+                  
+                                <rich:spacer height="50px"/>
+                  
+                                <h:outputText value="Liste des faces"  styleClass="title1"/>
+                                
+                                 <rich:separator width="100%" height="5" />
+                
+
+
+                                 <rich:dataTable  value="#{mancamp.macamp.faceCampagne}" var="f"  style="width:100%" >
+                        <h:column>
+                            <f:facet  name="header">
+                                <h:outputText value="Id face"/>
+                            </f:facet>
+                                  <h:outputText value="#{f.idFace}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet  name="header">
+                                <h:outputText value="format"/>
+                            </f:facet>
+                              <h:outputText value="#{f.format}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet  name="header">
+                                <h:outputText value="type"/>
+                            </f:facet>
+                              <h:outputText value="#{f.type}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet  name="header">
+                                <h:outputText value="Adresse"/>
+                            </f:facet>
+                              <h:outputText value="#{f.adresse}"/>
+                        </h:column>
+                        
+                          <h:column>
+                            <f:facet  name="header">
+                                <h:outputText value="Map"/>
+                            </f:facet>
+                              <center><h:commandButton image="/images/icons/eye.png" action="#{mancamp.facecarto}" /></center>
+                        </h:column>
+                    </rich:dataTable>
+
+
+
+
+
+                    </h:form>
+                 </rich:panel>
+
+
+                <rich:modalPanel id="photo" width="720" height="550" >
+                    <rich:panel width="800" height="630">
+
+                        <h:graphicImage url="/images/image.png" width="100%" height="100%"/>
+                     </rich:panel>
+                    <a onclick="Richfaces.hideModalPanel('photo');return false;"  href="javascript:void">Ferme</a>
+                </rich:modalPanel>
+
+
+
+
+
+
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

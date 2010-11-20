@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:m="http://code.google.com/p/gmaps4jsf/"
+      xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:gmaps4jsf="http://code.google.com/p/gmaps4jsf/">
+
+
+        
+        <ui:composition template="/template_Client.xhtml">
+            <ui:define name="carte">
+             <m:resources key="ABQIAAAA3yJ5iAFn4zDifNFLnZjZqBTlnsQ1gFKWE5O385MHkvYiHcSUVhRgkSkj4c4qtQSDzU9MFe7SWGwuIg"/>
+            </ui:define>
+            <ui:define name="body">
+                  <rich:panel style="width:100%;" >
+                    <h:outputText value="Projection carthographique" styleClass="title1"/>
+                     <rich:separator width="100%" height="5" />
+                        <rich:spacer height="20px"/>
+                    <h:form>
+                        <m:map width="900px" height="800px" latitude="35.51" longitude="10.14" zoom="8" >
+                            
+                            
+                            <m:marker latitude="#{mancamp.laface.coordonneX}" longitude="#{mancamp.laface.coordonneY}">
+                                <m:eventListener eventName="show" />
+                                <m:htmlInformationWindow htmlText="format : #{mancamp.laface.format},
+                                                         audience : #{mancamp.laface.audience},
+                                                         Adresse: #{mancamp.laface.adresse},
+                                                         Note Qualitative: #{mancamp.laface.noteQualitative}"/>
+                                <m:groundoverlay imageURL="/images/logo.gif"/>
+                                <m:icon imageURL="images/1.gif"/>
+                               
+                            </m:marker>
+                           
+                             
+     
+    			<m:mapControl name="GLargeMapControl" position="G_ANCHOR_BOTTOM_RIGHT"/>
+    			<m:mapControl name="GMapTypeControl"/>
+    		</m:map>
+               
+    		
+
+
+                    </h:form>
+                 </rich:panel>
+
+            </ui:define>
+
+        </ui:composition>
+        
+   
+</html>

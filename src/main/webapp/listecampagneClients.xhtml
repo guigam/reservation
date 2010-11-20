@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+        xmlns:p="http://primefaces.prime.com.tr/ui">
+    
+    <body>
+        
+        <ui:composition template="/template_Client.xhtml">
+
+            <ui:define name="style">
+                <style>
+                .down {
+                    width: 80%;
+                    valign:bottom;
+                }
+                .left{text-align:left;}
+                .right{text-align:right;}
+                </style> 
+            </ui:define>
+         
+
+            <ui:define name="body">
+                <h:form>
+                <rich:panel style="width:100%;" >
+                    <h:outputText value="Liste des campagnes" styleClass="title1"/>
+                    <rich:separator width="100%" height="5" /><rich:spacer height="15px"/>
+
+
+
+                    <rich:tabPanel switchType="ajax">
+                        <rich:tab label="campagne en attente">
+                            <rich:dataTable  style="width:100%;" binding="#{forum.dataTable}"  var="cc" value="#{mancamp.campagneEnCourClient}" >
+                               <rich:column >
+                                    <f:facet name="header">
+                                        <h:outputText value="Nom campagne"/>
+                                    </f:facet>
+
+                                         <h:commandLink value="#{cc.nomCampagne}" action="#{mancamp.detailCampCli}"/>
+
+                                </rich:column>
+
+                                <rich:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Détails"/>
+                                    </f:facet>
+                                    <h:panelGrid columns="2">
+                                          <h:outputText value="Date Debut : "  styleClass="title2"/>
+                                         <h:outputText value="#{cc.dateDebut}" />
+                                         <h:outputText value="Date Fin"  styleClass="title2"/>
+                                          <h:outputText value="#{cc.dateFin}"/>
+                                          <h:outputText value="Annonceur" styleClass="title2"/>
+                                           <h:outputText value="#{cc.monClient.nomClient}"/>
+                                     </h:panelGrid>
+                                </rich:column>
+                                <rich:column width="50px">
+                                    <f:facet name="header">
+                                        <h:outputText value="Editer"/>
+                                    </f:facet>
+                                    <center><h:commandButton image="/images/icons/page_edit.png"/></center>
+                                  
+                                </rich:column>
+                                <rich:column width="50px">
+                                    <f:facet name="header">
+                                        <h:outputText value="Forum"/>
+                                    </f:facet>
+
+                                         <center><h:commandButton image="/images/icons/group.png" onclick="Richfaces.showModalPanel('forum');return false;" href="javascript:void"/></center>
+
+                                </rich:column>
+
+
+
+                                    <f:facet name="footer">
+                                            <rich:datascroller></rich:datascroller>
+                                    </f:facet>
+
+                                    </rich:dataTable>
+
+                        </rich:tab>
+                           <rich:tab label="campagne en cours">
+
+                               <rich:dataTable id="tab1"   style="width:100%;"  var="cc" value="#{mancamp.campagneEnCourClient}" >
+                                   <rich:column  width="33%">
+                                    <f:facet name="header">
+                                        <h:outputText value="Nom campagne"/>
+                                    </f:facet>
+                                        <h:panelGrid cellspacing="10" columns="2" columnClasses="left,right" width="100%" >
+                                           <h:commandLink  value="#{cc.nomCampagne}" action="#{mancamp.detailCampCli}" />
+                                           <p:rating value="" disabled="true" />
+                                         </h:panelGrid>
+                                </rich:column>
+
+                                <rich:column width="60%">
+                                    <f:facet name="header">
+                                        <h:outputText value="Détails"/>
+                                    </f:facet>
+                                    <h:panelGrid columns="2">
+                                          <h:outputText value="Date Debut : "  styleClass="title2"/>
+                                         <h:outputText value="#{cc.dateDebut}" />
+                                         <h:outputText value="Date Fin"  styleClass="title2"/>
+                                          <h:outputText value="#{cc.dateFin}"/>
+                                          <h:outputText value="Annonceur" styleClass="title2"/>
+                                           <h:outputText value="#{cc.monClient.nomClient}"/>
+                                     </h:panelGrid>
+                                </rich:column>
+                                <rich:column width="7%">
+                                    <f:facet name="header">
+                                        <h:outputText value="Forum"/>
+                                    </f:facet>
+
+                                         <center><h:commandButton image="/images/icons/group.png" onclick="Richfaces.showModalPanel('forum');return false;" href="javascript:void"/></center>
+
+                                </rich:column>
+
+
+
+                                    <f:facet name="footer">
+                                            <rich:datascroller></rich:datascroller>
+                                    </f:facet>
+
+                                    </rich:dataTable>
+
+                        </rich:tab>
+
+
+
+
+
+
+
+                        <rich:tab label="Liste des campagnes">
+                                         <u><h:outputText value="recherche" style=" font-size:10pt; font-weight:bold; color:#EF8325"/></u>
+                                    <rich:panel style="width:100%; color:#800000;" >
+                                        <h:panelGrid columns="7">
+                                         <h:form>
+
+
+                                        
+                                        <h:outputText value="Date Début"/>
+                                        <rich:calendar label="Date Début" value="#{mancamp.db}"/>
+
+                                        <rich:spacer width="25px"/>
+
+
+                                          <h:outputText value="Date Fin"/>
+                                          <rich:calendar label="Date Fin" value="#{mancamp.df}"/>
+
+                                        <rich:spacer width="25px"/>
+
+                                        <h:commandButton value="Lancer"  action="#{mancamp.rech}" reRender="gen"/>
+                                         </h:form>
+                                         </h:panelGrid>
+
+
+
+
+                                    </rich:panel>
+
+
+                                    <rich:spacer height="40px"/>
+                                    <h:outputText value="Resultat" styleClass="title3"/>
+                                    <rich:separator width="100%" height="5" />
+                                    <rich:spacer height="10"/>
+                                       
+                                          <a4j:outputPanel id="gen">
+                                            <a4j:outputPanel id="mess" rendered="${empty mancamp.mescamps}" >
+                                                 <h:outputText value="Aucun Resultat" style="font-size:14;" />
+                                            </a4j:outputPanel>
+
+                                              <rich:dataTable id="tab" binding="#{mancamp.dataTable}"   style="width:100%;"  var="cp" value="#{mancamp.mescamps}" rendered="#{ not empty mancamp.mescamps}">
+                                             <rich:column width="33%" >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Nom campagne"/>
+                                                </f:facet>
+                                               <h:panelGrid cellspacing="10" columns="2" columnClasses="left,right" width="100%" >
+                                                   <h:commandLink  value="#{cp.nomCampagne}" action="#{mancamp.detailCampCli}" />
+                                                   <p:rating value="" disabled="true" />
+                                               </h:panelGrid>
+                                                     
+                                             </rich:column>
+
+                                             <rich:column width="60%">
+                                                <f:facet name="header">
+                                                    <h:outputText value="Détails"/>
+                                                </f:facet>
+                                                <h:panelGrid columns="2">
+                                                      <h:outputText value="Date Debut : "  styleClass="title2"/>
+                                                     <h:outputText value="#{cp.dateDebut}" />
+                                                     <h:outputText value="Date Fin"  styleClass="title2"/>
+                                                      <h:outputText value="#{cp.dateFin}"/>
+                                                   
+                                                 </h:panelGrid>
+                                            </rich:column>
+                                            <rich:column width="7%">
+                                    <f:facet name="header">
+                                        <h:outputText value="Forum"/>
+                                    </f:facet>
+
+                                         <center><h:commandButton image="/images/icons/group.png" onclick="Richfaces.showModalPanel('forum');return false;" href="javascript:void"/></center>
+
+                                </rich:column>
+                                 
+
+
+
+
+                                    <f:facet name="footer">
+                                            <rich:datascroller></rich:datascroller>
+                                    </f:facet>
+
+                            </rich:dataTable>
+                        </a4j:outputPanel>
+
+                    </rich:tab>
+                    </rich:tabPanel>
+
+                </rich:panel>
+
+
+
+
+                                         <rich:modalPanel height="600"  id="forum" autosized="true" zindex="2000">
+                                            <f:facet name="header">
+                                                <h:panelGrid columns="3" columnClasses="left,right">
+                                                    <h:graphicImage url="images/icons/cross.png" onclick="Richfaces.hideModalPanel('forum');return false;"  href="javascript:void" />
+                                                     <h:outputText value="Liste des discutions" />
+                                                     
+                                                     
+                                                     </h:panelGrid>
+                                            </f:facet>
+                                             
+                                             <rich:panel style="height:100%">
+                                                 <h:panelGrid columns="1" width="100%">
+                                                     <h:dataTable  var="f" value="#{forum.discution}">
+                                                     <h:outputText value="auteur :  #{f.auteur} : #{f.dateMessage}  " styleClass="title2"/>
+                                                     <rich:separator width="100%" height="1"/>
+                                                     <h:outputText value="#{f.message}" />
+                                                     </h:dataTable>
+                                                     </h:panelGrid>
+                                                     <rich:spacer height="15"/>
+                                                     <h:outputText value="Nouveau Message" styleClass="title2"/>
+                                                     <rich:separator width="100%" height="5"/>
+                                                     <h:inputTextarea  cols="55" rows="10"/>
+                                                     <h:commandButton value="Envoyer" />
+                                                    
+
+                                                 </rich:panel>
+                                           
+                                           
+                                         </rich:modalPanel>
+
+
+
+
+
+
+              </h:form>
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+        xmlns:p="http://primefaces.prime.com.tr/ui">
+
+
+
+        <head>
+              <p:resources />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA3yJ5iAFn4zDifNFLnZjZqBTlnsQ1gFKWE5O385MHkvYiHcSUVhRgkSkj4c4qtQSDzU9MFe7SWGwuIg" type="text/javascript"> </script>
+          
+
+
+            <style>
+
+                    .style1{
+                        font-weight:bold;
+
+                    }
+
+                     p { width:400px; }
+
+
+                .top1 {
+                    vertical-align:top;
+                    width:20%;
+                }
+                .top2 {
+                    width: 80%;
+                    vertical-align:top;
+                }
+                .title1{
+                    font-size:16pt;
+                    font-weight:bold
+                }
+                .title2{
+                    font-size:9pt;
+                    font-weight:bold;
+                }
+                 .title3{
+                    font-size:11pt;
+                    font-weight:bold;
+                }
+                      .tooltip {
+            background-color:#{richSkin.generalBackgroundColor};
+            border-width:3px;
+            padding:10px;
+        }
+        .tooltip-text {
+            width:350px;
+            height:80px;
+            cursor:arrow;
+            border-width:2px;
+            text-align:center;
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .tooltipData {
+            font-weight: bold;
+        }
+            </style>
+            <ui:insert name="carte"></ui:insert>
+            <ui:insert name="style"></ui:insert>
+            <ui:insert name="script"></ui:insert>
+
+        </head>
+
+           <body>
+     <h:graphicImage url="/images/logo.gif" height="80"/>
+            <h:panelGrid columns="2" headerClass="rich-toolbar" width="100%">
+
+		<f:facet name="header">
+			<rich:toolBar>
+                             <h:form>
+                            <h:commandButton image="/images/icons/house.png" action="#{redirect.menuClient}"/>
+                            </h:form>
+                            <h:outputText style="color:white;font-size:8pt" value="Site de réservation des Regies " />
+                        	<rich:toolBarGroup  location="right">
+                                    <h:outputText value="Utilisateur:" style="font-weight:bold;font-size:11pt;"/>
+                                    <h:outputText  style="font-weight:bold;font-size:11pt; color:#EF8325" value="#{log.monuser.username}" />
+                                    <rich:spacer width="10px"/>
+					 <a href="www.google.ca" style="white-space:nowrap; color:white " >Log out</a>
+                                </rich:toolBarGroup>
+			</rich:toolBar>
+		</f:facet>
+              </h:panelGrid>
+                                         <h:panelGrid cellspacing="10" columns="2" columnClasses="top1,top2" width="100%"  >
+
+                 
+		<rich:panelMenu >
+                    <rich:panelMenuGroup label="Menu" expanded="true"  >
+
+                        <rich:panelMenuGroup label="Campagne"  expanded="true">
+                            <rich:panelMenuItem label="liste des campagnes" action="#{redirect.listecampagnecli}"  />
+                            <rich:panelMenuItem label="Nouvelle campagne"  action="#{redirect.nvCamp}"/>
+                        </rich:panelMenuGroup>
+                        <rich:panelMenuGroup label="Regie / faces" expanded="true"  >
+                            <rich:panelMenuItem label="Liste des regies"  action="#{redirect.listeRegies}"/>
+                            <rich:panelMenuItem label="liste des faces disponibles"  action="#{redirect.listfacedispo}"/>
+                        </rich:panelMenuGroup>
+
+
+                        <rich:panelMenuGroup label="Etude et Pige" expanded="true" >
+                             <rich:panelMenuItem label="Pige et monitoring" action="#{redirect.img}"  />
+                        </rich:panelMenuGroup>
+
+                    </rich:panelMenuGroup>
+                </rich:panelMenu>
+
+
+                      <h:panelGroup style="width:100%;">
+                <ui:insert name="body"></ui:insert>
+                      </h:panelGroup>
+        </h:panelGrid>
+        </body>
+
+
+</html>

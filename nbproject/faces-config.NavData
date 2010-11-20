@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="listecampagneClients.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="listeClients.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="index.jsp" x="650" y="450" zoom="true"/>
+        <Node id="DetailCampagneClient.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="newjsp.jsp" x="400" y="600" zoom="true"/>
+        <Node id="newface.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="uploadImage.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="DetailCampagneregie.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="ListeFaces.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="welcomeJSF.jsp" x="400" y="150" zoom="true"/>
+        <Node id="carteRegie.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="NouvelleCommande.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="Listecampagne.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="ListFaceDispo.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="faceRegies.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="pigeClient.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="carteClient_faceIndiv.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="newuser.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="menuRegie.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="NouvelleCampagne.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="menuClient.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="editface.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="listeRegies.xhtml" x="650" y="600" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>
